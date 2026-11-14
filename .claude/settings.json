@@ -1,0 +1,63 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(**/.env*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*firebase-adminsdk*.json)",
+      "Read(**/*.keystore)",
+      "Read(**/*.jks)",
+      "Edit(**/.env*)",
+      "Edit(**/*.pem)",
+      "Edit(**/*.key)",
+      "Edit(**/*firebase-adminsdk*.json)",
+      "Edit(./.claude/**)",
+      "Bash(sudo *)",
+      "Bash(rm -rf *)",
+      "Bash(curl *)",
+      "Bash(/usr/bin/curl *)",
+      "Bash(wget *)",
+      "Bash(/usr/bin/wget *)",
+      "Bash(vercel env pull*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(npm install*)",
+      "Bash(npm i *)",
+      "Bash(vercel*)",
+      "Bash(eas*)"
+    ],
+    "allow": ["Bash(npm run *)", "Bash(npx vitest*)", "Bash(node --test *)"],
+    "blockReadsOutsideWorkingDirectories": true
+  },
+  "disableBypassPermissionsMode": "disable",
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "filesystem": {
+      "denyRead": ["~/"],
+      "allowRead": ["."],
+      "allowWrite": ["."]
+    },
+    "network": {
+      "allowedDomains": ["registry.npmjs.org", "github.com"]
+    }
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/pre-tool-use.mjs"
+          }
+        ]
+      }
+    ]
+  }
+}
