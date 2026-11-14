@@ -1,6 +1,6 @@
 import { clearSessionTokens, getSessionTokens, saveSessionTokens } from "@/api/tokenStorage";
 
-const DEFAULT_API_URL = "https://39-ruleta-de-decisiones-api.vercel.app";
+const DEFAULT_API_URL = "https://temporary-quick-sycamore-celuwat.vercel.app";
 
 export function getApiBaseUrl(): string {
   const raw = process.env.EXPO_PUBLIC_API_URL ?? DEFAULT_API_URL;
